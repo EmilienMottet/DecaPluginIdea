@@ -15,6 +15,7 @@
 //  psiImplUtilClass="com.simpleplugin.psi.impl.DecaPsiImplUtil"
 
   tokens = [
+  PRIMTYPE="regexp:(boolean)|(int)|(float)"
   COMMENT_LINE="regexp://[^\r\n]*"
   COMMENT="regexp:/\*(.|\n)*\*/"
   OBRACE="{"
@@ -106,6 +107,7 @@ primary_expr
            | ( OPARENT ( type CPARENT OPARENT )? expr | ( READINT | READFLOAT | NEW ident ) OPARENT ) CPARENT
            | literal
 type     ::= ident
+           | PRIMTYPE
 literal  ::= INT
            | FLOAT
            | STRING

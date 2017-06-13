@@ -25,6 +25,7 @@ import static fr.ensimag.deca.intellijplugin.psi.DecaTypes.*;
 EOL=\R
 WHITE_SPACE=\s+
 
+PRIMTYPE=(boolean)|(int)|(float)
 COMMENT_LINE="//"[^\r\n]*
 COMMENT="/"\*(.|\n)*\*"/"
 INT=[0-9]+
@@ -36,9 +37,6 @@ TMULTI_LINE_STRING=\"(\\.|[^\"])*\"
 %%
 <YYINITIAL> {
   {WHITE_SPACE}             { return WHITE_SPACE; }
-  {COMMENT_LINE}            { return COMMENT_LINE; }
-  {COMMENT}                 { return COMMENT; }
-
 
   "{"                       { return OBRACE; }
   "}"                       { return CBRACE; }
@@ -84,6 +82,9 @@ TMULTI_LINE_STRING=\"(\\.|[^\"])*\"
   ""                        { return END_OF_LINE_COMMENT; }
   "asm"                     { return ASM; }
 
+  {PRIMTYPE}                { return PRIMTYPE; }
+  {COMMENT_LINE}            { return COMMENT_LINE; }
+  {COMMENT}                 { return COMMENT; }
   {INT}                     { return INT; }
   {FLOAT}                   { return FLOAT; }
   {STRING}                  { return STRING; }

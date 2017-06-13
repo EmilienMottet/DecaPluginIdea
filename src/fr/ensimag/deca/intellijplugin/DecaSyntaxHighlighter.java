@@ -53,7 +53,7 @@ public class DecaSyntaxHighlighter extends SyntaxHighlighterBase{
             return OPERATOR_KEYS;
         } else if (iElementType.equals(DecaTypes.OBRACE) || iElementType.equals(DecaTypes.CBRACE)) {
             return BRACE_KEYS;
-        } else if (iElementType.equals(DecaTypes.PRINT) || iElementType.equals(DecaTypes.PRINTLN)) {
+        } else if (iElementType.equals(DecaTypes.PRIMTYPE) || iElementType.equals(DecaTypes.PRINT) || iElementType.equals(DecaTypes.PRINTLN)) {
             return KEYWORD_KEYS;
         } else if (iElementType.equals(DecaTypes.STRING)) {
             return STRING_KEYS;
