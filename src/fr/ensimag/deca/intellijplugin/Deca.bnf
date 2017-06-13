@@ -1,0 +1,142 @@
+{
+  parserClass="fr.ensimag.deca.intellijplugin.parser.DecaParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Deca"
+  psiImplClassSuffix="Impl"
+  psiPackage="fr.ensimag.deca.intellijplugin.psi"
+  psiImplPackage="fr.ensimag.deca.intellijplugin.psi.impl"
+
+  elementTypeHolderClass="fr.ensimag.deca.intellijplugin.psi.DecaTypes"
+  elementTypeClass="fr.ensimag.deca.intellijplugin.psi.DecaElementType"
+  tokenTypeClass="fr.ensimag.deca.intellijplugin.psi.DecaTokenType"
+
+//  psiImplUtilClass="com.simpleplugin.psi.impl.DecaPsiImplUtil"
+
+  tokens = [
+  COMMENT_LINE="regexp://[^\r\n]*"
+  COMMENT="regexp:/\*(.|\n)*\*/"
+  OBRACE="{"
+  CBRACE="}"
+  SEMI=";"
+  COMMA=","
+  EQUALS="="
+  RETURN="return"
+  PRINT="print"
+  PRINTLN="println"
+  PRINTX="printx"
+  PRINTLNX="printlnx"
+  OPARENT="("
+  CPARENT=")"
+  WHILE="while"
+  IF="if"
+  ELSE="else"
+  OR="||"
+  AND="&&"
+  EQEQ="=="
+  NEQ="!="
+  LEQ="<="
+  GEQ=">="
+  GT=">"
+  LT="<"
+  INSTANCEOF="instanceof"
+  PLUS="+"
+  MINUS="-"
+  TIMES="*"
+  SLASH="/"
+  PERCENT="%"
+  EXCLAM="!"
+  DOT="."
+  READINT="readint"
+  READFLOAT="readfloat"
+  NEW="new"
+  INT="regexp:[0-9]+"
+  FLOAT="regexp:[0-9]+\.?[0-9]*(F|f)?"
+  STRING="regexp:\"(\\.|[^\"])*\""
+  TRUE="true"
+  FALSE="false"
+  THIS="this"
+  NULL="null"
+  TIDENT="regexp:[a-zA-Z$_][a-zA-Z0-9$_]*"
+  CLASS="class"
+  EXTENDS="extends"
+  PROTECTED="protected"
+  END_OF_LINE_COMMENT=""
+  ASM="asm"
+  TMULTI_LINE_STRING="regexp:\"(\\.|[^\"])*\""
+      ]
+}
+
+/* converted on Mon Jun 12, 2017, 23:56 (UTC+02) by antlr_3-to-w3c v0.42 which is Copyright (c) 2011-2017 by Gunther Rademacher <grd@gmx.net> */
+
+prog     ::= list_classes main //EOF
+main     ::= block?
+block    ::= OBRACE list_decl list_inst CBRACE
+list_decl
+         ::= decl_var_set*
+decl_var_set
+         ::= type list_decl_var SEMI
+list_decl_var
+         ::= decl_var ( COMMA decl_var )*
+decl_var ::= ident ( EQUALS expr )?
+list_inst
+         ::= inst*
+inst     ::= ( RETURN? expr | ( PRINT | PRINTLN | PRINTX | PRINTLNX ) OPARENT list_expr CPARENT )? SEMI
+           | if_then_else
+           | WHILE OPARENT expr CPARENT OBRACE list_inst CBRACE
+if_then_else
+         ::= IF OPARENT expr CPARENT OBRACE list_inst CBRACE ( ELSE IF OPARENT expr CPARENT OBRACE list_inst CBRACE )* ( ELSE OBRACE list_inst CBRACE )?
+list_expr
+         ::= ( expr ( COMMA expr )* )?
+expr     ::= or_expr ( EQUALS or_expr )*
+or_expr  ::= and_expr ( OR and_expr )*
+and_expr ::= eq_neq_expr ( AND eq_neq_expr )*
+eq_neq_expr
+         ::= inequality_expr ( ( EQEQ | NEQ ) inequality_expr )*
+inequality_expr
+         ::= sum_expr ( ( LEQ | GEQ | GT | LT ) sum_expr | INSTANCEOF type )*
+sum_expr ::= mult_expr ( ( PLUS | MINUS ) mult_expr )*
+mult_expr
+         ::= unary_expr ( ( TIMES | SLASH | PERCENT ) unary_expr )*
+unary_expr
+         ::= ( MINUS | EXCLAM )* primary_expr ( DOT ident ( OPARENT list_expr CPARENT )? )*
+primary_expr
+         ::= ident ( OPARENT list_expr CPARENT )?
+           | ( OPARENT ( type CPARENT OPARENT )? expr | ( READINT | READFLOAT | NEW ident ) OPARENT ) CPARENT
+           | literal
+type     ::= ident
+literal  ::= INT
+           | FLOAT
+           | STRING
+           | TRUE
+           | FALSE
+           | THIS
+           | NULL
+ident    ::= TIDENT
+list_classes
+         ::= class_decl*
+class_decl
+         ::= CLASS ident class_extension OBRACE class_body CBRACE
+class_extension
+         ::= ( EXTENDS ident )?
+class_body
+         ::= ( decl_method | decl_field_set )*
+decl_field_set
+         ::= visibility type list_decl_field SEMI
+visibility
+         ::= PROTECTED?END_OF_LINE_COMMENT
+list_decl_field
+         ::= decl_field ( COMMA decl_field )*
+decl_field
+         ::= ident ( EQUALS expr )?
+decl_method
+         ::= type ident OPARENT list_params CPARENT ( block | ASM OPARENT multi_line_string CPARENT SEMI )
+list_params
+         ::= ( param ( COMMA param )* )?
+multi_line_string
+         ::= STRING
+           | TMULTI_LINE_STRING
+param    ::= type ident
+
+//EOF      ::= $
