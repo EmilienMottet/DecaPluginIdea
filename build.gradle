@@ -1,0 +1,28 @@
+plugins {
+    id "org.jetbrains.intellij" version "0.1.10"
+}
+
+apply plugin: 'idea'
+apply plugin: 'org.jetbrains.intellij'
+apply plugin: 'java'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+sourceSets.main.java.srcDir 'src/main/gen'
+
+intellij {
+    version '143.2370.31'
+    pluginName 'Deca Language Plugin'
+}
+
+group 'fr.ensimag.deca.fr.ensimag.deca.intellijplugin'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
