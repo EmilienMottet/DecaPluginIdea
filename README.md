@@ -6,7 +6,7 @@ TODO: Write a project description
 
 
 - Using IDE built-in plugin system:
-  - <kbd>Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Browse repositories...</kbd> > <kbd>Search for ".ignore"</kbd> > <kbd>Install Plugin</kbd>
+  - <kbd>Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Browse repositories...</kbd> > <kbd>Search for "deca"</kbd> > <kbd>Install Plugin</kbd>
 <!--
 - Manually:
   - Download the [latest release](https://github.com/EmilienMottet/DecaPluginIdea/releases/latest) and install it manually using <kbd>Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Install plugin from disk...</kbd>

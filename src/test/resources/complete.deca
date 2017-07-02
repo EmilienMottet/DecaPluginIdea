@@ -1,0 +1,64 @@
+class A extends Object{
+  protected int b,a = 1;
+  float f = 1.0f, f2 = f, f3 = 0.5, f4 = 1.0F, f4;
+
+  void inti(){
+    int a = 1;
+    boolean b = (true || false ) && true;
+
+    while(a == 1){
+      a = 0;
+    }
+
+    if(2 != 1){
+
+    }
+
+    if(1 <= 2){
+
+    }else{
+
+    }
+
+    if(true){
+
+    }else if(1 < 2){
+
+    }else if(1 >= 2){
+
+    }else if(1 > 2){
+
+    }
+
+
+
+  }
+
+  void init1(int a){
+    int b = 4;
+    a = 5;
+  }
+
+  void metasm()asm("
+    LOAD #0,R0
+    RTS
+  ");
+}
+
+{
+   A a = new A();
+   float i,j,k;
+   i = 0Xf.0P+1;
+   println(i);
+   j = 0x000F.0p+1f;
+   printlnx(j);
+   k = 0x000F.0p+1F;
+   print((int)(i));
+   printx(j);
+   a.init();
+
+  println(2*3-5/5%0);
+  println(!false);
+  ;
+  println(hello,world);
+}
