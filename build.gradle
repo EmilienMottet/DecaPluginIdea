@@ -14,6 +14,11 @@ sourceSets.main.java.srcDir 'src/main/gen'
 intellij {
     version '143.2370.31'
     pluginName 'Deca Language Plugin'
+    publish {
+        pluginId 'fr.ensimag.deca.fr.ensimag.deca.intellijplugin.id'
+        password System.getenv('PLUGIN_PASSWORD')
+        username System.getenv('PLUGIN_USERNAME')
+    }
 }
 
 group 'fr.ensimag.deca.fr.ensimag.deca.intellijplugin'

@@ -3,6 +3,6 @@
 /.idea
 .DS_Store
 /build
-*.jar
 *.iml
 out/
+gradle.properties
